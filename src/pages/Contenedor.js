@@ -8,6 +8,7 @@ class Contenedor extends Component {
 
     
 
+    // contenido del navbar y de las rutas hijas para poder navegar sin que se desborde la pagina
 
     render() {
         return (

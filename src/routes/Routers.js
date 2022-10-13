@@ -5,7 +5,7 @@ import  Login  from '../pages/Login';
 import Menu from "../pages/Menu";
 import TaskList from "../pages/TaskList";
 
-
+// rutas para dirigirse segun si esta o no logueado
 
 function Routers() {
   return (
@@ -13,8 +13,6 @@ function Routers() {
       <Routes>
         <Route path="/" element={<Login />}/>
         <Route path="/*" element={<Contenedor />} />
-        {/* <Route path="/menu" element={<Menu />} />
-        <Route path="/task" element={<TaskList />} /> */}
       </Routes>
     </BrowserRouter>
   );

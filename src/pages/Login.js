@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { apiUrl } from '../services/baseUrl';
-import axios from 'axios';
+
 
 // cookies
 import Cookies from 'universal-cookie';
 
 
-
+// clases de css 
 import '../css/Login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,7 +24,7 @@ class Login extends Component {
         }
     };
 
-    // evento para el cambio de los inputs
+    // evento para el cambio de los inputs en tiempo real
     handleChange = async e => {
         await this.setState({
             // desestructuración para las variables
@@ -33,33 +33,34 @@ class Login extends Component {
                 [e.target.name]: e.target.value
             }
         });
-        console.log(this.state.form);
-
     }
 
 
 
-    // para logearse 
+    // método post para logearse 
     login=async() => {
         console.log(this.state.form.email,);
         await fetch(apiUrl.API_URL+'login/',{
             method:'POST',
+            // encabezado para la autenticaciòn
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
-            
+            // conversion de datos email y password en json
             body:JSON.stringify({
                 email:this.state.form.email,
                 password:this.state.form.password
             })
         })
         .then(res=>{
+            //resultado de retorno del API
             return res.json();
         })
         .then(result=>{
             // console.log(result.token);
             if (result.status !== '400' ) {
+                // almacenamiento de datos en las cookies para utilizar en todas las ventanas
                 cookies.set('token', result.token, {path:"/"} )
                 let resul = result.user[0];
                 cookies.set('id', resul.id, {path:"/"});
@@ -80,13 +81,14 @@ class Login extends Component {
     }
 
 
+    // componente que verifica y ayuda a la redirecciòn de ruta en caso de no estar logueaso o cerrado sesion
     componentDidMount(){
         if (cookies.get('username')) {
             window.location.href="./*"
         }
     }
 
-
+// rendedirazado y formulario para el login 
     render() {
         return (
             <div className='containerPrincipal'>

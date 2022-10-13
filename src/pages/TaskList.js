@@ -18,7 +18,7 @@ class TaskList extends Component {
 
     user_id = cookies.get('id');
     token = cookies.get('token');
-    // header = `Authorization: Bearer ${this.token}`;
+
 
     // estado para los inputs
     state={
@@ -105,6 +105,7 @@ class TaskList extends Component {
         console.log(this.state.form);
     }
 
+    // componente para hacer un refresh de la pagina cuando sufre algun cambio o evento
     componentDidMount() {
         this.peticionGet();
       }
@@ -150,6 +151,8 @@ class TaskList extends Component {
                         </table>
                     </div>
                     
+
+                    {/* Modal para agregar y editar datos */}
                     
                     <Modal isOpen={this.state.modalInsertar}>
                         <ModalHeader style={{display: 'block'}}>
@@ -184,6 +187,7 @@ class TaskList extends Component {
                     </Modal>
 
 
+                    {/* modal para confirmar la iliminaciòn de una tarea */}
                     <Modal isOpen={this.state.modalEliminar}>
                         <ModalBody>
                         Estás seguro que deseas eliminar la tarea {form && form.description}

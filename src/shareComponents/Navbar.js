@@ -9,8 +9,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
     const navigate = useNavigate();
+    // creaciòn de un objeto de tipo Cookie
     const cookies = new Cookies();
 
+    // eliminaciòn de las cookies cuando el usuario cierra sesion
     const cerrarSesion=()=>{
         cookies.remove('id',{path:"/"});
         cookies.remove('lastname',{path:"/"});
@@ -21,19 +23,17 @@ const Navbar = () => {
         window.location.href='./'
     }
     
+    // hooks que ayuda a ver si el usuario no ha cerrado sesion
     useEffect(() => {
         if (!cookies.get('username')) {
             window.location.href="./"
         }
     }, [])
 
-    console.log('token: '+cookies.get('token'));
+    
     const user = cookies.get('username');
-    // componentDidMount(){
-    //     if (cookies.get('username')) {
-    //         window.location.href="./"
-    //     }
-    // }
+
+    // contenido del navbar
         return (
             <>
                 <div >
